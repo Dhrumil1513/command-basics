@@ -1,0 +1,99 @@
+PYTHON SMALL SCRIPTS
+a = "titanic"
+print(type(a))
+isinstance(a, str)
+length=len(a)
+print(len(a))
+numbers = (1,3,5,4,5,2)
+y=sum(numbers)
+print(y)
+dna=input("enter a dna sequence")
+enter a dna sequenceATCGCGATCGCTAGAGCT\
+# convert dna to rna
+rna=dna.replace("T","U")
+print(rna)
+length=len(dna)
+print(length)
+# GC COUNT
+g= dna.count("G")
+c= dna.count("C")
+print(g)
+print(c)
+print(g+c)
+gc_content=(dna.count("G")+dna.count("C")) /length*100
+print(gc_content)
+# TO FIND SEQUENCE
+x= rna.find("AUG")
+print(x)
+# TM FOR DNA & RNA
+print(dna)
+g= dna.count("G") #counts the number of "G" in the dna sequence
+c= dna.count("C") #counts the number of "C" in the dna sequence
+a= dna.count("A") #counts the number of "A" in the dna sequence
+t= dna.count("T") 
+tm= (4*(g+c)+2*(a+t))
+print(tm)
+# LOOPS
+for i in range(1111):
+    print("hello, I am Dhrumil sisodiya")
+# GENERATING A TABLE OF ANY NO.  TO ANY GIVEN MULTIPLE
+number=int(input("submit the number whose table ypu wish to generate"))
+times=int(input("the limit to which you wish to generate the number"))
+for i in range (1,times+1):
+  table=number*i
+  print(number,"*",i,"=",table)
+# FOR LOOP ON STRING WITH CONDITIONAL PRINT
+dna="AATTGGCC"
+for i in dna:
+  print(i)
+# CHEKING FOR PURINS AND PYRIMIDINS
+dna="AATTGGCC"
+for i in dna:
+  if i=="G" or i=="A":
+   print(i, "purine")
+  else:
+   print(i, "pyrimidine")
+# counting in loop
+purine=0; pyrimidine=0
+dna="GAATTCAAAA"
+#LOOP START
+for i in dna:
+  if i=="G" or i=="A":
+   print(i, "purine")
+   purine+=1
+  else :
+    print(i, "pyrimidine")
+    pyrimidine+=1
+ #loop end
+print("total purines = ", purine, "total pyrimidines = ", pyrimidine)    
+# DECLARING THE LIST
+list1=["dna", "rna", "protein"]
+for i in list1:
+  print(i)
+list2=["replication", "transcription", "translation"]
+for i in range(3):
+  print(list1[i],"-", list2[i])
+central_dogma=[]
+molecule=["DNA","RNA","PROTEIN"]
+process=["replication","transcription","translation"]
+for i in range(3):
+  central_dogma.append(molecule[i])
+  central_dogma.append(process[i])
+  print(i,central_dogma)
+  print("\n",central_dogma)
+
+# protein have 20 amino acids
+#create a list of amino acids
+amino_acids=["G","A","S","P","V","T","C","I","L","M","F","Y","W","H","Q","R","N","K","E","D"]
+#TAKE PROTEIN SEQUENCE AS INPUT
+protein=input("enter protein sequence ")
+print(protein)
+for i in amino_acids:
+  count1=protein.count(i)
+  percent=(count1/len(protein))*100
+  print(i,percent)
+ print(i,"{0:.1f}".format(percent),"%")
+
+
+
+
