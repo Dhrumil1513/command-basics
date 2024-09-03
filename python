@@ -104,5 +104,26 @@ if c==4:
    break
 file2.close()
 file3.close()
+    LIST MATHOD - LIST ARE MUTABLE
+    ;LEN, SUM, APPEND, INSERT, DELETE, EXTEND, POP, REMOVE, SORT, COUNT, COPY
+# TUPLES
+AN IMUTABLE LIST IS TUPLE- IT IS DECLARE WITH ROUND BRACKETS.
+# UPLOAD FILE IN GOOGLE COLABE
+from google.colab import files
+uploaded = files.upload()
 
-
+# sequence Alignment - #hamming distance -HD
+#the number of positions where two strings of the same length differ
+dna1=input("submit dna 1")
+dna2=input("submit dna 2")
+# CALCULATING HD
+#CHECKING FOR EQUAL LENGTH
+if len(dna1)==len(dna2):
+  count=0
+  for i in range(len(dna1)):
+    if(dna1[i]!=dna2[i]):
+      count+=1
+      print(i,dna1[i],dna2[i])
+      print("HD =",count)
+    else:
+      print("DNA length mismatch")
