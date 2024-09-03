@@ -93,7 +93,16 @@ for i in amino_acids:
   percent=(count1/len(protein))*100
   print(i,percent)
  print(i,"{0:.1f}".format(percent),"%")
-
-
+# reading a file in jupyter notebook line by line and writting the 1st 4 line
+file2=open("name_and_path",'r' or 'w')
+file3=open("name_and_path",'r' or 'w')
+c=0
+for line in file2:
+file3.write(line)
+c+=1
+if c==4:
+   break
+file2.close()
+file3.close()
 
 
