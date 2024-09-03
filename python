@@ -126,4 +126,4 @@ if len(dna1)==len(dna2):
       print(i,dna1[i],dna2[i])
       print("HD =",count)
     else:
-      print("DNA length mismatch")
+      print("DNA length match")
