@@ -7,7 +7,7 @@ print(len(a))
 numbers = (1,3,5,4,5,2)
 y=sum(numbers)
 print(y)
-dna=input("enter a dna sequence")
+dna=input("enter a dna sequence") 
 enter a dna sequenceATCGCGATCGCTAGAGCT\
 # convert dna to rna
 rna=dna.replace("T","U")
