@@ -131,3 +131,55 @@ if len(dna1)==len(dna2):
 
 
 to open any file open (copy the path with \\ anf name.extension)
+
+run the file in SPYDER 
+
+#opening the file for reading (file1) and writting (file2)
+file1=open("C:\\Users\\dhrumil\\Desktop\\desertation material\\resultd.txt",'w')
+file2=open("C:\\Users\\dhrumil\\Desktop\\desertation material\\CYP sequance\\seq.fas","r")
+
+
+#%%
+#intializing flags 
+count=0
+seq=""
+# reading file line by line, removing the new line character and joining all the lines except the def line
+
+
+for line in file2:
+    line = line.rstrip("\n")  #removing new line character
+    count+=1
+    if count==1:
+        file1.write(line) #writing the def line
+    else:
+        seq=seq.upper()
+        seq=seq+line #concatenating sequence lines        
+        
+        
+        #%%
+        
+        length1=len(seq)
+        file1.write("\n" +"length of the sequence is:" +str(length1)+"\n")
+        
+        #%%
+        
+        #calculating the amount of composition in DNA
+        
+        nucleotide=('A','T','G','C',)
+        GC=0
+        
+        for x in nucleotide:
+            n_count=seq.count(x)
+            file1.write(str(x)+str(n_count)+"\t")
+            if x=="G" or x=="C":
+                GC=GC+n_count
+            print(x,n_count)
+            
+            percent_GC=(GC/length1)*100
+            file1.write("\n"+"GC content="+ str(percent_GC))
+            
+            #%%
+            file1.close()
+            file2.close()
+            
+            
