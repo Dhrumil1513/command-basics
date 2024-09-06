@@ -1,0 +1,12 @@
+getwd()   to know working directory
+install.packages("..........")
+library(".......")    #to know the available tools in that
+counts <- read_csv("data/GSE60450_GeneLevel_Normalized(CPM.and.TMM)_data.csv")    #read file into counts
+sampleinfo <- read_csv("data/GSE60450_filtered_metadata-1.csv")   # for sample informations
+dim(sampleinfo)  #for know dimentions
+head(sampleinfo) #1st 6 lines
+view(sampleinfo)
+colnames(sampleinfo)
+sampleinfo$characteristics # listing charactoristic column
+colnames(sampleinfo)[1] <- sample_id  # change column 1 name to sample_id
+summary(sampleinfo)  #summary of the data
