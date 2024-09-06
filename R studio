@@ -10,3 +10,14 @@ colnames(sampleinfo)
 sampleinfo$characteristics # listing charactoristic column
 colnames(sampleinfo)[1] <- sample_id  # change column 1 name to sample_id
 summary(sampleinfo)  #summary of the data
+seqdata <- pivot_longer(counts, cols = starts_with("GSM"), names_to = "Sample", values_to = "Count")  #formating the data wide to long
+seqdata <- pivot_longer(counts, cols = GSM1480291:GSM1480302, names_to = "Sample", values_to = "Count")   #formating the data wide to long
+seqdata <- pivot_longer(counts, cols = -c("gene_id", "gene_symbol"), names_to = "Sample", values_to = "Count") # -c is for ignore gene_id and gene_symbol
+allinfo <- full_join(seqdata, sampleinfo, by = c("Sample" = "sample_id"))  # join two data
+
+MAKING ggplot
+ggplot(data = allinfo, mapping = aes(x = Sample, y = Count)) + geom_boxplot() 
+ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count))) + geom_boxplot()
+ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1))) + geom_boxplot()  # to avoid 0 log that is undifined
+
+
