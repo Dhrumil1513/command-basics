@@ -19,5 +19,9 @@ MAKING ggplot
 ggplot(data = allinfo, mapping = aes(x = Sample, y = Count)) + geom_boxplot() 
 ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count))) + geom_boxplot()
 ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1))) + geom_boxplot()  # to avoid 0 log that is undifined
-
+ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1))) + geom_violin() # other type of plot
+ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1), colour = Sample)) +
++     geom_boxplot() # colour the sample
+ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1), fill = Sample)) +
++     geom_boxplot()
 
