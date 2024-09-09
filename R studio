@@ -15,7 +15,7 @@ seqdata <- pivot_longer(counts, cols = GSM1480291:GSM1480302, names_to = "Sample
 seqdata <- pivot_longer(counts, cols = -c("gene_id", "gene_symbol"), names_to = "Sample", values_to = "Count") # -c is for ignore gene_id and gene_symbol
 allinfo <- full_join(seqdata, sampleinfo, by = c("Sample" = "sample_id"))  # join two data
 
-MAKING ggplot
+#MAKING ggplot
 ggplot(data = allinfo, mapping = aes(x = Sample, y = Count)) + geom_boxplot() 
 ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count))) + geom_boxplot()
 ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1))) + geom_boxplot()  # to avoid 0 log that is undifined
@@ -29,7 +29,7 @@ ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1), fill = Sam
 ggplot(data = allinfo, mapping = aes(x = log2(Count+1), fill = Sample)) + geom_density()
 ggplot(data = allinfo, mapping = aes(x = log2(Count+1), colour = Sample)) + geom_density()
 
-TO SAVE THE PLOT
+#TO SAVE THE PLOT
 > pdf("myplot.pdf")
 > ggplot(data = allinfo, mapping = aes(x = log2(Count+1), colour = Sample)) + geom_density()
 > dev.off()
@@ -42,3 +42,62 @@ str_detect(characteristics, "luminal.*virgin") ~ "lvirg",
 str_detect(characteristics, "luminal.*preg") ~ "lpreg",
 str_detect(characteristics, "luminal.*lact") ~ "llact"
 ))
+#The genes we’ve picked are the 8 genes with the highest counts summed across all samples. The code for
+#how to get the gene symbols for these 8 genes is shown below. This code uses pipes (%>%) to string a
+#series of function calls together (which is beyond the scope of this tutorial, but totally worth learning about
+#independently!).
+
+mygenes <- allinfo %>%
+group_by(gene_symbol) %>%
+summarise(Total_count = sum(Count)) %>%
+arrange(desc(Total_count)) %>%
+head(n = 8) %>%
+pull(gene_symbol)
+
+#We filter our data for just these genes of interest. We use %in% to check if a value is in a set of values.
+mygenes_counts <- filter(allinfo, gene_symbol %in% mygenes)
+
+
+#We can make boxplots for just these genes. We facet on the gene_symbol column using facet_wrap(). We
+#add the tilde symbol ~ in front of the column we want to facet on.
+
+ggplot(data = mygenes_counts,
+mapping = aes(x = Group, y = log2(Count + 1), fill = Group)) +
+geom_boxplot() +
+facet_wrap(~ gene_symbol)
+
+ ggplot(data = mygenes_counts,
++        mapping = aes(x = Group, y = log2(Count + 1), colour = Group)) +
++     geom_point() +
++     facet_wrap(~ gene_symbol)
+> 
+> ggplot(data = mygenes_counts,
++        mapping = aes(x = Group, y = log2(Count + 1), colour = Group)) +
++     geom_jitter() +
++     facet_wrap(~ gene_symbol)
+
+#to add x axis y axis and title
+
+ggplot(data = mygenes_counts,
+mapping = aes(x = Group, y = log2(Count + 1), colour = Group)) +
+geom_jitter() +
+facet_wrap(~ gene_symbol) +
+labs(x = "Cell type and stage", y = "Count", title = "Mammary gland RNA-seq data")
+
+ ggplot(data = mygenes_counts,
++        mapping = aes(x = Group, y = log2(Count + 1), colour = Group)) +
++     geom_jitter() +
++     facet_wrap(~ gene_symbol) +
++     labs(x = "Cell type and stage", y = "Count", title = "Mammary gland RNA-seq data") + theme(axis.text.x = element_text(angle = 90))
+
+
+#for blank plot
+ggplot(data = mygenes_counts,
+mapping = aes(x = Group, y = log2(Count + 1), colour = Group)) +
+geom_jitter() +
+facet_wrap(~ gene_symbol) +
+labs(x = "Cell type and stage", y = "Count", title = "Mammary gland RNA-seq data") +
+theme(axis.text.x = element_text(angle = 90)) +
+theme(panel.background = element_blank(),
+panel.grid.major = element_blank(),
+panel.grid.minor = element_blank())
