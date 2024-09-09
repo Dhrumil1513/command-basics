@@ -25,3 +25,20 @@ ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1), colour = S
 ggplot(data = allinfo, mapping = aes(x = Sample, y = log2(Count + 1), fill = Sample)) +
 +     geom_boxplot()
 
+ ggplot(data = allinfo, mapping = aes(x = log2(Count+1))) + geom_density()
+ggplot(data = allinfo, mapping = aes(x = log2(Count+1), fill = Sample)) + geom_density()
+ggplot(data = allinfo, mapping = aes(x = log2(Count+1), colour = Sample)) + geom_density()
+
+TO SAVE THE PLOT
+> pdf("myplot.pdf")
+> ggplot(data = allinfo, mapping = aes(x = log2(Count+1), colour = Sample)) + geom_density()
+> dev.off()
+TO ADD DATA IN DATASETS          woman <- mutate(woman, BMI= weight/(height**2)*703  
+allinfo <- mutate(allinfo, Group = case_when(
+str_detect(characteristics, "basal.*virgin") ~ "bvirg",
+str_detect(characteristics, "basal.*preg") ~ "bpreg",
+str_detect(characteristics, "basal.*lact") ~ "blact",
+str_detect(characteristics, "luminal.*virgin") ~ "lvirg",
+str_detect(characteristics, "luminal.*preg") ~ "lpreg",
+str_detect(characteristics, "luminal.*lact") ~ "llact"
+))
