@@ -77,3 +77,52 @@ cat("summary of the vector is \n")
 print(summary(vector1))
 sink()
 file.show("result.txt")
+
+
+library(tidyr)
+library(ggplot2)
+
+# locating iris dataset
+data(iris)
+View(iris)
+
+
+# resaping data from  wide to long using 'tidyr' tool
+
+
+wide_graph=ggplot(iris, aes(x=Species,y=Sepal.Length))+ labs(x="Species", y="Length in cm", title="Variation in petal and sepal of iris species")+
+  aes(fill=Species)+
+  geom_boxplot()
+
+print(wide_graph)
+
+
+
+iris_long=gather(iris, parameter, measure, Sepal.Length:Petal.Width, factor_key=TRUE)
+View(iris_long)
+
+
+base_graph=ggplot(iris_long, aes(x=Species,y=measure))+
+  labs(x="Species", y="Length in cm", title="Variation in Petals and Sepals in iris species")+
+  theme(axis.text.x = element_text (angle=90))+
+  facet_grid(~parameter)+
+  aes(fill=Species)
+
+print(base_graph)
+
+
+
+graph1=base_graph+geom_boxplot()
+print(graph1)
+
+
+graph.1=base_graph+geom_boxplot(varwidth = TRUE)+geom_jitter()  # width represent no. of sample
+print(graph.1)
+
+
+graph.1=base_graph+geom_boxplot(varwidth = TRUE)+geom_jitter(aes(color=parameter), size=1)
+# to seperate parameters by colour
+print(graph.1)
+
+
+
