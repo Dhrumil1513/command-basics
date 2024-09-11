@@ -124,5 +124,9 @@ graph.1=base_graph+geom_boxplot(varwidth = TRUE)+geom_jitter(aes(color=parameter
 # to seperate parameters by colour
 print(graph.1)
 
+graph.2=base_graph+geom_violin()
+print(graph.2)
 
+graph.3=base_graph+geom_violin()+geom_boxplot(width=0.1, color="yellow",alpha=0.5)
+print(graph.3)
 
