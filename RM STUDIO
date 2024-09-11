@@ -1,0 +1,79 @@
+# generating random DNA sequence
+nucleotide=c("A","G","C","T")
+dna=sample(nucleotide, 100, replace = TRUE)
+print(dna)
+
+# CHECKING THE LENGTH
+length1=length(dna)
+print(length1)
+
+#intializing counters
+a=0; t=0; c=0; g=0
+
+#calculation of A,T,G,C
+for (i in 1:length1){
+  if(dna[i]=="A"){a=a+1}
+  if(dna[i]=="T"){t=t+1}
+  if(dna[i]=="C"){c=c+1}
+  if(dna[i]=="G"){g=g+1}
+}
+gc=((g+c)/length1)*100
+cat("a,t,g,c,gc% ",a,t,g,c,gc)
+
+#method 2
+library(stringr)
+dna=paste(dna, collapse="")
+print(dna)
+length1=length(dna)
+print(length1)
+a=str_count(dna, "A")
+t=str_count(dna, "T")
+c=str_count(dna, "C")
+g-str_count(dna, "g")
+cat("a,t,g,c ",a,t,g,c)
+
+#method 3 using stringer library and loop
+#library(stringr)
+nuc=c("A","T","G","C")
+for (x in nuc){
+  p_count=str_count(dna,x)
+  cat(x,p_count,"\n")
+}
+
+
+
+#in built function if R
+a=c(1,2,3,4,5)
+total=sum(a)
+print(total)
+
+average=mean(a)
+print(average)
+
+#creating your own function
+# 4 parts :- function name, arguments, function body, return value
+
+cube=function(length)
+# body of function
+  {
+  cube_area=6*(length^2)
+  cube_vol=length^3
+  print(c(length,cube_area,cube_vol))  #return value
+}
+
+for(i in 1:10)
+{
+  cube(i)
+}
+
+
+# creating a new file and save in particular position using sink
+sink(file="result.txt", append=F)
+vector1=c(11,12,13,14,15)
+cat("the vector is ", vector1,"\n")
+cat("sum of the vector is ",sum(vector1),"\n")
+cat("average of vector is ", mean(vector1), "\n")
+cat("summary of the vector is \n")
+print(summary(vector1))
+sink()
+file.show("result.txt")
