@@ -153,7 +153,66 @@ file.show("iris.dataset.txt")
 
 
 
+# dplyr :- join 2 datasets together  process known as DATA WRANGLING
+install.packages("dplyr")
+library(dplyr)
 
 
-# dypyr :- join 2 datasets together
+#creating dataframe1
+tag=c("A","B")
+x=c(1,2)
+dataframe1=data.frame(tag,x)
+print(dataframe1)
+
+#creating dataframe2
+tag=c("B","C")
+y=c(3,4)
+dataframe2=data.frame(tag,y)
+print(dataframe2)
+
+
+#full join- joining the 2 datasets
+data3=full_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data3
+
+# inner join - rows with comon tags from single data frame
+data4=inner_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data4
+
+#left join- raws with comon tag are joined in a single dataframe
+data5=left_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data5
+
+
+#right join- tags from dataframe2 as reference for data1 if tag match - added else NA
+data6=right_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data6
+
+# using dataframe 1 as refference and printing common tag and its value in dataframe 1
+data7=semi_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data7
+
+
+# using data1 as reference and showing what is unique in data1
+data8=anti_join(dataframe1, dataframe2, by="tag")
+dataframe1
+dataframe2
+data8
+
+
+
+
+
+
+
 
