@@ -209,8 +209,27 @@ dataframe1
 dataframe2
 data8
 
+file  -> new file  -> R markdown....
+function to calculate area and volue of the cube
+
+```{r}
+cube=function(length1=1){
+area_cube=6*length1^2
+volume_cube=length1^3
+print(c(length1, area_cube,volume_cube))
+}
+```
 
 
+#calling a function
+```{r}
+cube()
+```
+```{r}
+for (i in 1:10){
+  cube(i)
+}
+```
 
 
 
