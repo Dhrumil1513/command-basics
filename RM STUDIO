@@ -6,7 +6,7 @@ print(dna)
 # CHECKING THE LENGTH
 length1=length(dna)
 print(length1)
-
+ 
 #intializing counters
 a=0; t=0; c=0; g=0
 
