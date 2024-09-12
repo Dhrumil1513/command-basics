@@ -130,3 +130,30 @@ print(graph.2)
 graph.3=base_graph+geom_violin()+geom_boxplot(width=0.1, color="yellow",alpha=0.5)
 print(graph.3)
 
+
+
+data()
+ls("package:datasets")
+
+#datasets available in all packages
+data(package = .packages(all.available = TRUE))
+
+data("iris")
+View(iris)
+summary(iris)
+
+
+#writting to file
+write.table(iris, "iris.dataset.txt", append=FALSE)
+file.show("iris.dataset.txt")
+
+write.table(iris, "iris.dataset.txt", append=FALSE, quote=FALSE, row.names=FALSE) #TO REMOVE "" AND RAW NUMBER
+file.show("iris.dataset.txt")
+
+
+
+
+
+
+# dypyr :- join 2 datasets together
+
