@@ -233,5 +233,56 @@ for (i in 1:10){
 
 
 
+# ****factoral data structure***********
+
+#categorical variables :- fixed number of values - e.g. days, months, 
+#mention in coments : 3 categorical variable
+
+days=c("Sunday","Monday","Friday","Wednesday")
+sort(days)
+
+#Q sort the days vector in the order the week days appear in a week 
+#creating a factor data structure
+
+#defining levels
+week=c("Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday")
+#converting vector in factor
+
+
+weekdays=factor(days,levels=week)
+weekdays
+is.factor(weekdays)
+sort(weekdays)
+
+# ACCESSING VALUES IN FACTOR
+weekdays
+weekdays[1]
+weekdays[c(1,2)]
+weekdays[1:4]
+weekdays[-3]  # print all expect 3rd posistion
+
+# altering values of a factor
+
+weekdays
+weekdays[1]="Wednesday"
+weekdays
+
+weekdays
+weekdays[1]="November"
+weekdays
+
+#directly creating factor
+
+work=factor(c("Monday","Wednesday","Friday","Saturday","Sunday","Tuesday","Thursday","Thursday","Friday","Monday"))
+work
+summary(work)
+levels(work)
+
+#adding new level
+levels(work)= c(levels(work), "Holiday")
+nlevels(work)
+
+
+
 
 
