@@ -285,4 +285,23 @@ nlevels(work)
 
 
 
+# reading marks obtain by students in a class text
+#setting the working directory
+
+setwd("E:")
+getwd()
+
+data1=read.csv("marks.csv",header=TRUE)
+View(data1)
+gender=as.factor(data1$Gender)
+gender
+levels(gender)
+summary(gender)
+
+
+ #exmple2
+barplot(table(data1$Gender))
+gender1=factor(data$Grnder, levels = c("M","F"))  # change the order in graph
+barplot(table(gender1))
+
 
