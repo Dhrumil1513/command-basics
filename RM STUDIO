@@ -305,3 +305,28 @@ gender1=factor(data$Grnder, levels = c("M","F"))  # change the order in graph
 barplot(table(gender1))
 
 
+
+
+# how to read a specific sheet from Excel documents in R
+install.packages("readxl")
+library(readxl)
+getwd()
+
+
+#reading sheet 1
+
+# if you just mention the name of the excel document, the 1st sheet read by default
+
+S1=read_excel("excelR.xlsx")
+S1
+
+S2=read_excel("excelR.xlsx",2)
+S2
+
+
+S3=read_excel("excelR.xlsx",Subject_2)
+
+S3
+
+
+
