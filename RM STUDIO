@@ -3,7 +3,7 @@ nucleotide=c("A","G","C","T")
 dna=sample(nucleotide, 100, replace = TRUE)
 print(dna)
 
-# CHECKING THE LENGTH
+# CHECKING THE LENGTH 
 length1=length(dna)
 print(length1)
  
