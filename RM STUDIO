@@ -388,5 +388,5 @@ MERGE 2 EXCEL SHEET
   df1 = readxl::read_excel(path = 'sdi.xlsx')
   df2 = readxl::read_excel(path = 'dhrumil.xlsx')
   df3 <- union(df1, df2)
-   View(df3)
+   View(df3) 
              
