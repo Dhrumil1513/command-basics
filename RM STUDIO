@@ -329,4 +329,42 @@ S3=read_excel("excelR.xlsx",Subject_2)
 S3
 
 
+extract columns from excel files
 
+ library(readxl)
+   
+             # Step 1: Get a list of Excel files in the folder (adjust the path)
+             file_list <- list.files(path = "C:/Users/dhrumil/Desktop/project/", pattern = "*.xlsx", full.names = TRUE)
+             
+             # Step 2: Define column names that will be used in the output
+             codes <- c("run_accession","isolation_source","study_accession","scientific_name","strain","collected_by","sample_accession", "submission_accession", "collected_by", "instrument_platform")
+             
+             # Step 3: Read data from the Excel files using lapply
+             # Note: We use range = "A1:GJ1" to select the specific range of columns you need.
+             
+             Data <- lapply(file_list, function(file_path) {
+               # Read data from each file
+               data <- read_excel(file_path, range = "A1:GI20")
+               print(names(data)) 
+               
+               # Optional: Select only the columns you need (example)
+               selected_data <- data[, codes, drop = FALSE]
+               
+               # Return the selected data
+               return(selected_data)
+             })
+             
+             # Step 4: Print or view the data
+             # If you want to print the result of each data frame in the list
+             print(Data)
+             
+             # If you want to view the first dataframe in the list
+             View(Data[[1]])
+             
+             
+             
+             
+             #test:save file, excel format
+             Write_xlsx(data, ExcelfileName = "data_dhrumil.xlsx")
+             
+             
