@@ -368,3 +368,18 @@ extract columns from excel files
              Write_xlsx(data, ExcelfileName = "data_dhrumil.xlsx")
              
              
+
+
+
+
+R STUDIO FOR EXCEL EXTRACTION
+
+> setwd("~/PRACTICE")
+> setwd("C:/Users/dhrumil/Desktop/project")
+> df = readxl::read_excel(path = 'PRJNA44890.metadata.xlsx')
+> View(df)
+library(dplyr)
+> df2=df %>% select("run_accession","isolation_source","study_accession","scientific_name","strain","collected_by","sample_accession", "submission_accession", "collected_by", "instrument_platform")
+ df2=df %>% select("run_accession","isolation_source","study_accession","scientific_name","strain","collected_by","sample_accession", "submission_accession", "collected_by", "instrument_platform")
+> View(df2)
+> write.csv(df2,'dhrumil.csv',row.names=FALSE)
