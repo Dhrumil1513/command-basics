@@ -3,6 +3,6 @@ ssconvert --version.   # check ssconvert version
   for i in *.tsv; do ssconvert "$i" "${i%.*}".xls; done  # loop for converting multiple files
 ssconvert --merge-to=output.xls *.tsv  # merge all output excel files
 
-# convet all tsv file   in to single excel sheet
+# convet all tsv file   in to single excel sheet 
 cat *.tsv > merged_data.tsv
 ssconvert merged_data.tsv output.xls
