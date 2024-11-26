@@ -1,0 +1,4 @@
+sudo apt install gnumeric   # install and activate not possible in HPC
+ssconvert --version.   # check ssconvert version
+  for i in *.tsv; do ssconvert "$i" "${i%.*}".xls; done  # loop for converting multiple files
+ssconvert --merge-to=output.xls *.tsv  # merge all output excel files
