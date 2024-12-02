@@ -1,3 +1,7 @@
+# TO CHECK THE STORAGE OF HPC
+lfs quota -u sisodiya.d /lustre/sisodiya.d
+
+
 PYTHON SMALL SCRIPTS
 a = "titanic"
 print(type(a))
