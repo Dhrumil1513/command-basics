@@ -1,4 +1,5 @@
-# this is done in R studio Biostrings Packages
+# this is done in R studio Biostrings Packages according to the paper.
+# there is another method for calculation of frequency of 1 gene sequence.
 library(seqinr)
 seq=read.fasta("sequence.fa")[[1]]
 count(seq,freq=TRUE,wordsize=4) # for the tetranucleotide frequency (edited)
