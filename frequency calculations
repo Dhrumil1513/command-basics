@@ -1,0 +1,5 @@
+# this is done in R studio Biostrings Packages
+library(seqinr)
+seq=read.fasta("sequence.fa")[[1]]
+count(seq,freq=TRUE,wordsize=4) # for the tetranucleotide frequency (edited)
+count(rev(comp(seq)),freq=TRUE,wordsize=4) # but this is exactly the reverse complement of the previous vector (if you see what I mean)
