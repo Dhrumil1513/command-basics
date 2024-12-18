@@ -1,4 +1,4 @@
-# generating random DNA sequence
+ # generating random DNA sequence
 nucleotide=c("A","G","C","T")
 dna=sample(nucleotide, 100, replace = TRUE)
 print(dna)
