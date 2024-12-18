@@ -389,4 +389,12 @@ MERGE 2 EXCEL SHEET
   df2 = readxl::read_excel(path = 'dhrumil.xlsx')
   df3 <- union(df1, df2)
    View(df3) 
-             
+#extract the column for word document
+# Read a space or tab-delimited text file
+data <- read.table("sarscov.txt", header = TRUE, sep = "\t", stringsAsFactors = FALSE)
+# Extract a specific column by name
+column_data <- data$var1
+print(column_data)
+data <- read.csv(".csv", stringsAsFactors = FALSE)
+first_column <- data[, 1]
+print(first_column)
