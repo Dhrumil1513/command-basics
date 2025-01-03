@@ -1,0 +1,2 @@
+export PATH=$PATH:/lustre/sisodiya.d/ncbi-blast-2.16.0+/bin
+PATH=$PATH:/lustre/sisodiya.d/ncbi-blast-2.16.0+/bin
