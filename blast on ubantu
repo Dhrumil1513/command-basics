@@ -1,2 +1,11 @@
 export PATH=$PATH:/lustre/sisodiya.d/ncbi-blast-2.16.0+/bin
 PATH=$PATH:/lustre/sisodiya.d/ncbi-blast-2.16.0+/bin
+
+
+# convert fastq to fasta
+seqtk seq -A ERR10471636_1.fastq.gz > ERR10471636_1.fasta
+# make blast database
+makeblastdb -in V3V4_Ecoli.fasta -parse_seqids -out ECOLI_ref -dbtype nucl
+
+blast command 
+blastn -query ERR10471636_1.fasta -db ECOLI_ref -outfmt 6 -num_threads 4 -out example_BLAST_results.txt
