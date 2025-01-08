@@ -10,7 +10,7 @@ echo ERR* >>TEST3.txt
 for i in `cat test.txt`; do
     seqtk seq -A "${i}_1.fastq.gz" > "${i}.fasta"
 done
-
+seqtk seq -A ERR10471636_1.fastq.gz > ERR10471636_1.fasta
 # make blast database
 makeblastdb -in V3V4_Ecoli.fasta -parse_seqids -out ECOLI_ref -dbtype nucl
 
