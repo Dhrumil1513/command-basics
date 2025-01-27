@@ -22,3 +22,5 @@ makeblastdb -in combined_enterococcus.fasta -dbtype nucl -out enterococcus_db
 
 blast command 
 blastn -query ERR10471636_1.fasta -db ECOLI_ref -outfmt 6 -num_threads 4 -out example_BLAST_results.txt
+CHANGE THE FASTA HEADER 
+for file in *.fasta; do sed -i "s|>NZ_KB944666.1${file}.fasta|>NZ_KB944666.1${file}|" "$file"; done
