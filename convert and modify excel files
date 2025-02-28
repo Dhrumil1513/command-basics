@@ -6,3 +6,70 @@ ssconvert --merge-to=output.xls *.tsv  # merge all output excel files
 # convet all tsv file   in to single excel sheet 
 cat *.tsv > merged_data.tsv
 ssconvert merged_data.tsv output.xls
+
+
+##### CODE FOR ADD BASENAME OF .csv FILE IN TO THE FILES AND MERGE THE FILES IN TO SINGLE FILES
+library(tidyverse)
+library(readr)
+library(dplyr)
+library(writexl)
+
+# Define the folder path containing the CSV files
+folder_path <- "C:/Users/dhrumil/Downloads/Virtual_taste-2/Virtual-taste"
+
+# Get all CSV file paths from the folder
+file_paths <- list.files(path = folder_path, pattern = "\\.csv$", full.names = TRUE)
+
+# Check if any CSV files are found
+if (length(file_paths) == 0) {
+  stop("No CSV files found in the specified folder.")
+}
+
+# Function to read a CSV file and add its base name as a separator
+labels <- function(file) {
+  message(paste("Reading file:", file))
+  data <- tryCatch({
+    # Read CSV with all columns as characters to avoid type mismatches
+    read_csv(file, col_types = cols(.default = "c"))
+  }, error = function(e) {
+    message(paste("Error reading file:", file, "-", e$message))
+    return(NULL)
+  })
+  
+  if (is.null(data)) return(NULL)
+  
+  file_name <- tools::file_path_sans_ext(basename(file))
+  sep <- data.frame(matrix(file_name, nrow = 1, ncol = ncol(data)))
+  colnames(sep) <- colnames(data)
+  
+  return(bind_rows(sep, data))
+}
+
+# Read, process, and merge all CSV files
+merged_data_list <- lapply(file_paths, labels)
+merged_data_list <- Filter(Negate(is.null), merged_data_list)  # Remove NULLs
+
+if (length(merged_data_list) == 0) {
+  stop("No valid CSV files were successfully read.")
+}
+
+merged_files <- bind_rows(merged_data_list)
+
+# Convert numeric columns back to appropriate types
+merged_files <- merged_files %>%
+  mutate(across(where(~ all(!is.na(as.numeric(.)), na.rm = TRUE)), as.numeric))
+
+# Define the output folder and create it if necessary
+output_folder <- "C:/Users/dhrumil/Downloads/Virtual_taste/Virtual_taste"
+if (!dir.exists(output_folder)) {
+  dir.create(output_folder, recursive = TRUE)
+}
+
+# Write the merged file to a CSV
+output_file <- file.path(output_folder, "merged_file.csv")
+write_csv(merged_files, output_file)
+
+# Display the first few rows of the merged data
+head(merged_files)
+
+print(paste("Merged file successfully created at:", output_file))
