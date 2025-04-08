@@ -101,3 +101,38 @@ theme(axis.text.x = element_text(angle = 90)) +
 theme(panel.background = element_blank(),
 panel.grid.major = element_blank(),
 panel.grid.minor = element_blank())
+
+
+
+## read the gene file and convert amino acid 
+library(seqinr)
+setwd("C:/Users/dhrumil/Downloads")
+seq1 <- read.fasta("sequence135.txt", as.string = TRUE)
+len(seq1)
+getLength(seq1)
+library(readxl)
+seq2 <- read_excel("codon.xlsx")
+dim(seq2)
+dim(rbind(seq2[,c(1,2)],seq2[,c(6,7)]))
+str(seq2)
+v1=seq2[,c(1,2)]
+v2=seq2[,c(6,7)]
+v3=rbind(v1,v2)
+colnames(seq2)[6:7]
+colnames(seq2)[6:7] <- colnames(seq2)[1:2]
+triplet=rbind(seq2[,c(1,2)],seq2[,c(6,7)])
+head(triplet)
+
+listt=c()
+
+for (i in seq(1,nchar(seq1),3)){
+  #print(i)
+
+  x <-substr(seq1,i,i+2)
+  print(x)
+  idx=which(triplet$Triplet...1==toupper(x))
+  triplet$`Amino acid...2`[idx]
+  listt=c(listt,triplet$`Amino acid...2`[idx])
+}
+listt
+write.table(listt, "amino.csv")
