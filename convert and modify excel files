@@ -73,3 +73,33 @@ write_csv(merged_files, output_file)
 head(merged_files)
 
 print(paste("Merged file successfully created at:", output_file))
+
+
+#by kd sir
+
+getwd()
+library(readxl)
+S1= read_excel("s1.xlsx")
+S2= read_excel("s2.xlsx")
+#list.files("..//Downloads//practice//",pattern = ".xlsx")
+lf <- list.files(pattern = ".xlsx")
+lf
+
+columns = c("gene","expression")
+df = data.frame(matrix(nrow = 0,ncol = length(columns)))
+colnames(df) = columns
+df
+dim(df)
+
+for(i in 1:length(lf)){
+  #print(i)
+  s1=read_xlsx(paste0(lf[i]))
+  df =as.data.frame(merge(df,s1,by="gene",all = T))
+}
+print(df)
+df[,-2]
+df[is.na(df)]=0
+df1 <- df[,-2]
+df1
+row_sums <- rowSums(df1)
+
